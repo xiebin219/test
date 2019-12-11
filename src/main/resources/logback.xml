@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <!--定义项目中日志输出位置                              控制台输出-->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <!--定义项目的日志输出格式-->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern> [%p] %d{yyyy-MM-dd HH:mm:ss} %m %n</pattern>
+            <!--       级别  日期格式        输出日志信息  换行符-->
+        </layout>
+    </appender>
+    <!--项目中跟日志控制  全局配置info  不设置为debug,因为信息太多-->
+    <root level="INFO">
+        <appender-ref ref="stdout"/>
+    </root>
+    <!--项目中指定包日志控制-->
+    <logger name="com.baizhi.cmfz_xie.dao" level="DEBUG"/>
+    <logger name="com.baizhi.cmfz_xie.service" level="DEBUG"/>
+</configuration>
