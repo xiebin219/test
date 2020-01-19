@@ -25,7 +25,7 @@ public class BannerController {
     public Map<String, Object> selectAll(Integer page, Integer rows) throws Exception {
         Map<String, Object> maps = new HashMap<String, Object>();
         //获取当前页的数据
-        List<Banner> employees = bannerService.queryAll(page,rows);
+        List<Banner> employees = bannerService.queryAll(page, rows);
         //设置当前页的数据
         maps.put("rows", employees);
         //设置当前页号
@@ -44,32 +44,33 @@ public class BannerController {
         maps.put("total", pagecount);
         return maps;
     }
-    @RequestMapping("edit")
-    public String edit(Banner banner,String oper){
 
-        String id=null;
+    @RequestMapping("edit")
+    public String edit(Banner banner, String oper) {
+
+        String id = null;
 
         //添加
-        if(oper.equals("add")){
-            System.out.println(banner+"xie");
-             id= bannerService.add(banner);
+        if (oper.equals("add")) {
+            System.out.println(banner + "xie");
+            id = bannerService.add(banner);
         }
         //修改
-        if(oper.equals("edit")){
-        bannerService.update(banner);
+        if (oper.equals("edit")) {
+            bannerService.update(banner);
         }
 
         //删除
-        if(oper.equals("del")){
+        if (oper.equals("del")) {
             bannerService.del(banner);
         }
         return id;
     }
 
     @RequestMapping("uploadBanner")
-    public void uploadBanner(MultipartFile src_img, String id, HttpServletRequest request){
+    public void uploadBanner(MultipartFile src_img, String id, HttpServletRequest request) {
 
-        bannerService.bannerUpload(src_img,id,request);
+        bannerService.bannerUpload(src_img, id, request);
 
     }
 

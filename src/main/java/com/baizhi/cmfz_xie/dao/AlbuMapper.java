@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface AlbuMapper extends Mapper<Albu> {
     List<Albu> queryAll(@Param("page") Integer page, @Param("rows") Integer rows);
+
     Integer totalcount();
 }

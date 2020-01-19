@@ -13,10 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=CmfzXieApplication.class)
+@SpringBootTest(classes = CmfzXieApplication.class)
 public class TestPhone {
     //有备注无需改动@Test
-    public  SendSmsResponse testphone() throws Exception{
+    public SendSmsResponse testphone() throws Exception {
         //设置超时时间-可自行调整
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
@@ -53,23 +53,24 @@ public class TestPhone {
 
 //请求失败这里会抛ClientException异常
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
-        if(sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {
+        if (sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {
 //请求成功
         }
         return sendSmsResponse;
     }
+
     @Test
-    public void testPhoneMs(){
-        SendSmsResponse sendSmsResponse=null;
+    public void testPhoneMs() {
+        SendSmsResponse sendSmsResponse = null;
         try {
-            sendSmsResponse=testphone();
-        }catch (Exception e){
+            sendSmsResponse = testphone();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         String message = sendSmsResponse.getMessage();
         String code = sendSmsResponse.getCode();
         System.out.println(code);
-        System.out.println("message"+message);
+        System.out.println("message" + message);
     }
 
 }

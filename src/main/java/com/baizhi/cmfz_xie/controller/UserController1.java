@@ -21,12 +21,13 @@ import java.util.Map;
 public class UserController1 {
     @Resource
     UserService userService;
+
     @RequestMapping("selectAll")
     @ResponseBody
     public Map<String, Object> selectAll(Integer page, Integer rows) throws Exception {
         Map<String, Object> maps = new HashMap<String, Object>();
         //获取当前页的数据
-        List<User> employees = userService.queryAll(page,rows);
+        List<User> employees = userService.queryAll(page, rows);
         //设置当前页的数据
         maps.put("rows", employees);
         //设置当前页号
@@ -45,23 +46,24 @@ public class UserController1 {
         maps.put("total", pagecount);
         return maps;
     }
-    @RequestMapping("edit")
-    public String edit(User user, String oper){
 
-        String id=null;
+    @RequestMapping("edit")
+    public String edit(User user, String oper) {
+
+        String id = null;
 
         //添加
-        if(oper.equals("add")){
+        if (oper.equals("add")) {
 
 
         }
         //修改
-        if(oper.equals("edit")){
+        if (oper.equals("edit")) {
             userService.update(user);
         }
 
         //删除
-        if(oper.equals("del")){
+        if (oper.equals("del")) {
 
         }
         return id;
@@ -69,20 +71,20 @@ public class UserController1 {
 
     @RequestMapping("daoData")
     @ResponseBody
-    public List<User> daoData(){
+    public List<User> daoData() {
         List<User> list = userService.select();
-        for(User user1:list){
-            user1.setAvatar("src/main/webapp/upload/photo/"+user1.getAvatar());   //导出图片
+        for (User user1 : list) {
+            user1.setAvatar("src/main/webapp/upload/photo/" + user1.getAvatar());   //导出图片
         }
         //导出配置的参数
         ExportParams exportParams = new ExportParams("用户", "学生");
         //参数：导出的配置，到出数据对应的实体类
         Workbook sheets = ExcelExportUtil.exportExcel(exportParams, User.class, list);
-        try{
+        try {
             //导出
             sheets.write(new FileOutputStream(new File("c://daima/Testdao1.xls")));
             sheets.close();
-        }catch (Exception e ){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;

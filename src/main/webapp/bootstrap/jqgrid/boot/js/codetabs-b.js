@@ -1,10 +1,12 @@
 function codeTabs(tabData) {
 
-    $("#codetabs").css({"height": "450px","width": "780px","margin-left" :"18px","-webkit-tab-size": 4,
-"-moz-tab-size": 4,
-"-ms-tab-size": 4,
-"-o-tab-size": 4,
-"tab-size": 4});
+    $("#codetabs").css({
+        "height": "450px", "width": "780px", "margin-left": "18px", "-webkit-tab-size": 4,
+        "-moz-tab-size": 4,
+        "-ms-tab-size": 4,
+        "-o-tab-size": 4,
+        "tab-size": 4
+    });
 
     var ul = $("<ul class='nav nav-tabs' role='tablist'>");
     var span = $("#codetabs");
@@ -13,13 +15,13 @@ function codeTabs(tabData) {
     for (var i = 0; i < tabData.length; i++) {
         var anchor = $("<a role='tab' data-toggle='tab'>")
             .attr("href", "#codetabs-" + i)
-			.attr("aria-controls", "codetabs-" + i)
+            .attr("aria-controls", "codetabs-" + i)
             .html(tabData[i].name);
         var li = $("<li role='presentation'>");
-		if(i===0) {
-			li.addClass('active');
-		}
-		li.append(anchor);
+        if (i === 0) {
+            li.addClass('active');
+        }
+        li.append(anchor);
 
         ul.append(li);
 
@@ -29,30 +31,30 @@ function codeTabs(tabData) {
         } else {
             div = $("<div role='tabpanel' class='tab-pane' style='height:350px; width:780px; overflow-y:scroll; font-size: 135%;'>");
         }
-		if(i===0) {
-			div.addClass('active');
-		}
+        if (i === 0) {
+            div.addClass('active');
+        }
         div.attr("id", "codetabs-" + i);
-                    
+
         divs.push(div);
     }
 
     //var anchor = $("<a>").attr("href", "#codetabs-" + tabData.length).attr("aria-controls", "codetabs-" + i)
-                        // .html("Theme");
+    // .html("Theme");
     //var li = $("<li>").append(anchor);
 
-   //ul.append(li);
+    //ul.append(li);
 
     //var div = $("<div role='tabpanel' class='tab-pane'>").attr("id", "codetabs-" + tabData.length);
 
     //divs.push(div);
 
     span.append(ul).append('<div class="tab-content"></div>');
-	//span.tab();
-$('#codetabs a').click(function (e) {
-  e.preventDefault();
-  $(this).tab('show');
-});
+    //span.tab();
+    $('#codetabs a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
     for (var i = 0; i < divs.length; i++) {
         $(".tab-content").append(divs[i]);
     }
@@ -84,12 +86,12 @@ function getFileText(url, divID, /*lang*/ tabName) {
                 preTag = $("<pre>").addClass("prettyprint");
             } else {
                 preTag = $("<span>");
-            }           
+            }
 
             var strippedData = removeCodeTabsCode(data);
-            tabName === "Description" ? preTag.html(strippedData) : preTag.text(strippedData);            
+            tabName === "Description" ? preTag.html(strippedData) : preTag.text(strippedData);
             $("#" + divID).append(preTag);
-           
+
             if (tabName !== "Description") {
                 prettyPrint();
             }
@@ -106,7 +108,7 @@ function removeCodeTabsCode(html) {
     if (beginIndex > -1) {
         var blockToRemove = html.substr(beginIndex, endIndex - beginIndex + endBlock.length);
         var result = html.replace(blockToRemove, "");
-        
+
         return result;
     }
 

@@ -30,19 +30,19 @@ public class ArticleServiceImpl implements ArticleService {
         UserExample example = new UserExample();
         Integer records = articleMapper.selectCountByExample(example);
 
-        map.put("records",records);
+        map.put("records", records);
 
         //总页数  total
-        Integer total=records%rows==0?records/rows:records/rows+1;
-        map.put("total",total);
+        Integer total = records % rows == 0 ? records / rows : records / rows + 1;
+        map.put("total", total);
 
         //当前页  page
-        map.put("page",page);
+        map.put("page", page);
 
         //数据  rows
-        RowBounds rowBounds = new RowBounds((page-1)*rows,rows);
+        RowBounds rowBounds = new RowBounds((page - 1) * rows, rows);
         List<Article> articles = articleMapper.selectByRowBounds(new Article(), rowBounds);
-        map.put("rows",articles);
+        map.put("rows", articles);
 
         return map;
     }
@@ -66,8 +66,9 @@ public class ArticleServiceImpl implements ArticleService {
     public void update(Article article) {
         ArticleExample example = new ArticleExample();
         example.createCriteria().andIdEqualTo(article.getId());
-        articleMapper.updateByExampleSelective(article,example);
+        articleMapper.updateByExampleSelective(article, example);
     }
+
     @Override
     public void del(Article article) {
         ArticleExample example = new ArticleExample();

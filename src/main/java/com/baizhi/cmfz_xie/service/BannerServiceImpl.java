@@ -23,17 +23,18 @@ public class BannerServiceImpl implements BannerService {
     BannerMapper bannerMapper;
 
 
-
     //查所有
-    public List<Banner> queryAll(Integer page,Integer rows){
+    public List<Banner> queryAll(Integer page, Integer rows) {
         List<Banner> banners = bannerMapper.queryAll(page, rows);
         return banners;
     }
+
     //查页码
-    public Integer queryOne(){
+    public Integer queryOne() {
         Integer totalcount = bannerMapper.totalcount();
         return totalcount;
     }
+
     //添加
     @Override
     public String add(Banner banner) {
@@ -42,14 +43,15 @@ public class BannerServiceImpl implements BannerService {
         banner.setId(uuid);
         banner.setStatus("1");
         banner.setUpload_time(new Date());
-        System.out.println(banner+"tttt");
+        System.out.println(banner + "tttt");
         bannerMapper.insert(banner);
 
 
         return uuid;
     }
+
     //删除
-    public void del(Banner banner){
+    public void del(Banner banner) {
         //因为需要根据id进行删除,因此要获取id
         BannerExample example = new BannerExample();
         example.createCriteria().andIdEqualTo(banner.getId());
@@ -61,12 +63,12 @@ public class BannerServiceImpl implements BannerService {
     public void update(Banner banner) {
         //updateByExampleSelective可以不用含主键
         //因为没有图片上传，会给你给为空串，此时设置为空值，就不会帮你进行修改
-        if(banner.getSrc_img()==""){
+        if (banner.getSrc_img() == "") {
             banner.setSrc_img(null);
         }
         BannerExample example = new BannerExample();
         example.createCriteria().andIdEqualTo(banner.getId());//获取id
-        bannerMapper.updateByExampleSelective(banner,example);
+        bannerMapper.updateByExampleSelective(banner, example);
     }
 
     //上传并修改路径
@@ -76,18 +78,18 @@ public class BannerServiceImpl implements BannerService {
         String realPath = request.getServletContext().getRealPath("/upload/photo");
 
         File file = new File(realPath);
-        if(!file.exists()){
+        if (!file.exists()) {
             file.mkdirs();
         }
 
         //2.获取文件名
         String filename = srcImg.getOriginalFilename();
         //从新给图片命名
-        String newName = new Date().getTime()+"-"+filename;
+        String newName = new Date().getTime() + "-" + filename;
 
         //3.文件上传
         try {
-            srcImg.transferTo(new File(realPath,newName));
+            srcImg.transferTo(new File(realPath, newName));
             //修改轮播图信息
             Banner banner = new Banner();
             banner.setId(id);
@@ -100,7 +102,7 @@ public class BannerServiceImpl implements BannerService {
             BannerExample example = new BannerExample();
             example.createCriteria().andIdEqualTo(banner.getId());
 
-            bannerMapper.updateByExampleSelective(banner,example);
+            bannerMapper.updateByExampleSelective(banner, example);
 //            bannerMapper.update(banner);
 
         } catch (IOException e) {

@@ -15,11 +15,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=CmfzXieApplication.class)
+@SpringBootTest(classes = CmfzXieApplication.class)
 public class TestEasy {
 
     @Test
-    public void testexport(){
+    public void testexport() {
 
         ArrayList<Student> students = new ArrayList<Student>();
         students.add(new Student("1", "小黄", 23, new Date()));
@@ -30,9 +30,9 @@ public class TestEasy {
         ExportParams exportParams = new ExportParams("计算机一班学生", "学生版");
         Workbook sheets = ExcelExportUtil.exportExcel(exportParams, Student.class, students);
 
-        try{
+        try {
             sheets.write(new FileOutputStream(new File("c://daima/TestPoi.xls")));
-        }catch (Exception e ){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

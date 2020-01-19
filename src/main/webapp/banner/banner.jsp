@@ -2,61 +2,63 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <script>
-    $(function(){
+    $(function () {
         //创建表单
         $("#bnTable").jqGrid({
-            url : "${path}/banner/selectAll",   //page  当前页    rows 每页展示条数
-            editurl:"${path}/banner/edit",
-            datatype : "json",
-            pager : '#bnPage',
-            page:1,
-            rowNum : 3,
-            rowList : [2,5,10,20,30],
-            viewrecords : true,  //是否展示总条数
-            styleUI:"Bootstrap",
-            height:"auto",
-            autowidth:true,
-            colNames : [ 'Id', '图片', '描述', '状态', '上传时间'],
-            colModel : [
-                {name : 'id',index : 'id',width : 55},                                         //上传图
-                {name : 'src_img',editable:true,index : 'invdate',width : 90,align:"center",edittype:"file",
-                    formatter:function(cellvalue, options, rowObject){
-                        return "<img src='${path}/upload/photo/"+cellvalue+"' style='width:180px;height:80px' />";
+            url: "${path}/banner/selectAll",   //page  当前页    rows 每页展示条数
+            editurl: "${path}/banner/edit",
+            datatype: "json",
+            pager: '#bnPage',
+            page: 1,
+            rowNum: 3,
+            rowList: [2, 5, 10, 20, 30],
+            viewrecords: true,  //是否展示总条数
+            styleUI: "Bootstrap",
+            height: "auto",
+            autowidth: true,
+            colNames: ['Id', '图片', '描述', '状态', '上传时间'],
+            colModel: [
+                {name: 'id', index: 'id', width: 55},                                         //上传图
+                {
+                    name: 'src_img', editable: true, index: 'invdate', width: 90, align: "center", edittype: "file",
+                    formatter: function (cellvalue, options, rowObject) {
+                        return "<img src='${path}/upload/photo/" + cellvalue + "' style='width:180px;height:80px' />";
                     }
                 },
-                {name : 'description',editable:true,index : 'name asc, invdate',width : 100},
-                {name : 'status',index : 'amount',width : 80,align : "right",align:"center",
-                    formatter:function(cellvalue, options, rowObject){
-                        if(cellvalue==1){
-                            return "<button class='btn btn-success' onclick='updateStatus(\""+rowObject.id+"\",\""+cellvalue+"\")'>冻结</button>";
-                        }else{
-                            return "<button class='btn btn-danger' onclick='updateStatus(\""+rowObject.id+"\",\""+cellvalue+"\")'>展示</button>";
+                {name: 'description', editable: true, index: 'name asc, invdate', width: 100},
+                {
+                    name: 'status', index: 'amount', width: 80, align: "right", align: "center",
+                    formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == 1) {
+                            return "<button class='btn btn-success' onclick='updateStatus(\"" + rowObject.id + "\",\"" + cellvalue + "\")'>冻结</button>";
+                        } else {
+                            return "<button class='btn btn-danger' onclick='updateStatus(\"" + rowObject.id + "\",\"" + cellvalue + "\")'>展示</button>";
                         }
                     }
                 },
-                {name : 'upload_time',index : 'note',width : 150,sortable : false}
+                {name: 'upload_time', index: 'note', width: 150, sortable: false}
             ]
         });
         //增删改查操作
-        $("#bnTable").jqGrid('navGrid', '#bnPage', {edit : true,add : true,del : true,addtext:"添加",edittext:"编辑"},
+        $("#bnTable").jqGrid('navGrid', '#bnPage', {edit: true, add: true, del: true, addtext: "添加", edittext: "编辑"},
             {
-                closeAfterEdit:true, //关闭添加框
+                closeAfterEdit: true, //关闭添加框
 
-                beforeShowForm:function(obj){
-                    obj.find("#src_img").attr("disabled",true);
+                beforeShowForm: function (obj) {
+                    obj.find("#src_img").attr("disabled", true);
                 }
             },   //修改之后的额外操作
             {
-                closeAfterAdd:true, //关闭添加框
-                afterSubmit:function (data) {  //提交之后执行的方法
+                closeAfterAdd: true, //关闭添加框
+                afterSubmit: function (data) {  //提交之后执行的方法
                     //文件的上传
                     $.ajaxFileUpload({
-                        url:"${path}/banner/uploadBanner",
-                        type:"post",
-                        datatype:"json",
-                        data:{id:data.responseText},  //获取id
-                        fileElementId:"src_img",  //需要上传的文件域的ID，即<input type="file">的ID
-                        success:function(){
+                        url: "${path}/banner/uploadBanner",
+                        type: "post",
+                        datatype: "json",
+                        data: {id: data.responseText},  //获取id
+                        fileElementId: "src_img",  //需要上传的文件域的ID，即<input type="file">的ID
+                        success: function () {
                             //刷新表单
                             $("#bnTable").trigger("reloadGrid");
                         }
@@ -69,24 +71,24 @@
 
     });
 
-    function updateStatus(id,status){
-        if(status==1){
+    function updateStatus(id, status) {
+        if (status == 1) {
             $.ajax({
-                url:"${path}/banner/edit",
-                type:"post",
-                datatype:"json",
-                data:{"id":id,"status":2,"oper":"edit"},
-                success:function () {
+                url: "${path}/banner/edit",
+                type: "post",
+                datatype: "json",
+                data: {"id": id, "status": 2, "oper": "edit"},
+                success: function () {
                     $("#bnTable").trigger("reloadGrid");
                 }
             })
-        }else {
+        } else {
             $.ajax({
-                url:"${path}/banner/edit",
-                type:"post",
-                datatype:"json",
-                data:{"id":id,"status":1,"oper":"edit"},
-                success:function () {
+                url: "${path}/banner/edit",
+                type: "post",
+                datatype: "json",
+                data: {"id": id, "status": 1, "oper": "edit"},
+                success: function () {
                     //刷新页面
                     $("#bnTable").trigger("reloadGrid");
                 }
@@ -105,13 +107,13 @@
 
     <%--标签页--%>
     <ul class="nav nav-tabs">
-        <li class="active"><a >轮播图管理</a></li>
+        <li class="active"><a>轮播图管理</a></li>
     </ul>
 
     <%--初始化表单--%>
     <table id="bnTable"/>
 
     <%--分页工具栏--%>
-    <div id="bnPage" />
+    <div id="bnPage"/>
 
 </div>

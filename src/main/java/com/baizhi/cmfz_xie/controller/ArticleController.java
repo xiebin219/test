@@ -17,7 +17,7 @@ public class ArticleController {
     private ArticleService articleService;
 
     @RequestMapping("queryByPage")
-    public HashMap<String,Object> queryByPage(Integer page,Integer rows){
+    public HashMap<String, Object> queryByPage(Integer page, Integer rows) {
 
         HashMap<String, Object> map = articleService.queryByPage(page, rows);
 
@@ -25,58 +25,57 @@ public class ArticleController {
     }
 
     @RequestMapping("edit")
-    public String edit(Article article, String oper){
+    public String edit(Article article, String oper) {
 
-        System.out.println("==controller: user== "+article);
+        System.out.println("==controller: user== " + article);
 
-        String id=null;
+        String id = null;
 
         //添加
-        if(oper.equals("add")){
+        if (oper.equals("add")) {
             //id= articleService.add(banner);
         }
         //修改
-        if(oper.equals("edit")){
+        if (oper.equals("edit")) {
             //articleService.update(user);
         }
         //删除
-        if(oper.equals("dell")){
-           // articleService.delete(article);
+        if (oper.equals("dell")) {
+            // articleService.delete(article);
         }
         return id;
     }
 
     @RequestMapping("add")
-    public String add(Article article){
+    public String add(Article article) {
 
-        System.out.println("article==="+article);
+        System.out.println("article===" + article);
         articleService.add(article);
 
         return "";
     }
-    @RequestMapping("del")
-    public String del(Article article){
 
-        System.out.println("article==="+article);
+    @RequestMapping("del")
+    public String del(Article article) {
+
+        System.out.println("article===" + article);
         articleService.del(article);
 
         return "";
     }
 
 
-
     @RequestMapping("update")
-    public HashMap<String,Object> update(Article article){
+    public HashMap<String, Object> update(Article article) {
 
-        System.out.println("article==="+article);
+        System.out.println("article===" + article);
 
         HashMap<String, Object> map = new HashMap<>();
         articleService.update(article);
 
-        map.put("success","200");
+        map.put("success", "200");
         return map;
     }
-
 
 
 }

@@ -18,11 +18,11 @@ import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=CmfzXieApplication.class)
+@SpringBootTest(classes = CmfzXieApplication.class)
 public class TestPoi {
 
     @Test
-    public void test1(){
+    public void test1() {
         //创建一个excel文件
         HSSFWorkbook workbook = new HSSFWorkbook();
         //创建一个工作薄   参数：工作薄名字(sheet1,shet2....)
@@ -48,26 +48,26 @@ public class TestPoi {
     }
 
     @Test
-    public void  testexports(){
-        Student stu1 = new Student("1","小王",17,new Date());
+    public void testexports() {
+        Student stu1 = new Student("1", "小王", 17, new Date());
         Student stu2 = new Student("2", "小唐", 18, new Date());
         List<Student> students = Arrays.asList(stu1, stu2);
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("学生信息");
         //设置宽度  参数：列索引，宽度
-        sheet.setColumnWidth(13,15*256);
+        sheet.setColumnWidth(13, 15 * 256);
         HSSFRow row = sheet.createRow(0);
 
         row.createCell(0).setCellValue("学生信息");
         //合并单元格
         CellRangeAddress cellAddresses = new CellRangeAddress(0, 5, 6, 6);
 
-        String[] titles={"Id","名字","年龄","生日"};
+        String[] titles = {"Id", "名字", "年龄", "生日"};
         //设置行高
-        row.setHeight((short)(20*20));
+        row.setHeight((short) (20 * 20));
 
-        for(int i=0;i<titles.length;i++){
-            String title=titles[i];
+        for (int i = 0; i < titles.length; i++) {
+            String title = titles[i];
             HSSFCell cell = row.createCell(i);
             cell.setCellValue(titles[i]);
 
@@ -83,10 +83,10 @@ public class TestPoi {
         font.setBold(true);//加粗
         font.setColor(font.COLOR_RED);//颜色
         font.setFontName("楷体");//设置字体
-        font.setFontHeight((short)30);//字体高度
+        font.setFontHeight((short) 30);//字体高度
 
         //处理数据行数据
-        for(int i=0;i<students.size();i++){
+        for (int i = 0; i < students.size(); i++) {
 
             HSSFRow row1 = sheet.createRow(i + 1);
             Cell cell = row1.createCell(0);
@@ -102,13 +102,13 @@ public class TestPoi {
     }
 
     @Test
-    public void testinport(){
+    public void testinport() {
         try {
             //读取工作簿
             HSSFWorkbook workbook = new HSSFWorkbook(new FileInputStream(new File("c://TestPoi.xls")));
             //获取工作簿
             HSSFSheet sheet = workbook.getSheet("学生信息");
-            for(int i=0;i<sheet.getLastRowNum();i++){
+            for (int i = 0; i < sheet.getLastRowNum(); i++) {
                 HSSFRow row = sheet.getRow(i + 2);
 
                 HSSFCell cell = row.getCell(0);

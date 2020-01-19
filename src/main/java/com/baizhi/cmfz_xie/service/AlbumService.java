@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface AlbumService {
     List<Albu> queryAll(Integer page, Integer rows);
+
     Integer queryOne();
 }

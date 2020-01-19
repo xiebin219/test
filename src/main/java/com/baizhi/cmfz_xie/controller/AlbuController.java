@@ -16,12 +16,13 @@ import java.util.Map;
 public class AlbuController {
     @Autowired
     private AlbumService albumService;
+
     @RequestMapping("selectAll")
     @ResponseBody
     public Map<String, Object> selectAll(Integer page, Integer rows) throws Exception {
         Map<String, Object> maps = new HashMap<String, Object>();
         //获取当前页的数据
-        List<Albu> employees = albumService.queryAll(page,rows);
+        List<Albu> employees = albumService.queryAll(page, rows);
         //设置当前页的数据
         maps.put("rows", employees);
         //设置当前页号

@@ -7,7 +7,8 @@ import tk.mybatis.mapper.common.Mapper;
 import java.util.List;
 
 public interface ChapterMapper extends Mapper<Chapter> {
-    List<Chapter> queryAll(@Param("page") Integer page, @Param("rows") Integer rows,@Param("albumId") String albumId);
+    List<Chapter> queryAll(@Param("page") Integer page, @Param("rows") Integer rows, @Param("albumId") String albumId);
+
     Integer totalcount();
 
 }

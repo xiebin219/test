@@ -9,8 +9,8 @@ public class Teacher {
 
     @Excel(name = "ID")
     private String id;
-    @Excel(name="名字")
+    @Excel(name = "名字")
     private String name;
-    @ExcelCollection(name="学生")
+    @ExcelCollection(name = "学生")
     private List<Student> students;
 }

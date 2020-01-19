@@ -17,22 +17,22 @@
     <script type="text/javascript" src="${path}/js/goEasy.js"></script>
     <script type="text/javascript">
 
-        $(function(){
+        $(function () {
             // 基于准备好的dom，初始化echarts实例
             var myChart = echarts.init(document.getElementById('main'));
 
-            $.get("${path}/echarts/queryByUser",function(data){
+            $.get("${path}/echarts/queryByUser", function (data) {
 
                 // 指定图表的配置项和数据
                 var option = {
                     title: {
                         text: '用户月注册统计',  //标题
-                        link:"${path}/main/main.jsp", //主标题超链接
-                        subtext:"用户信息" //副标题
+                        link: "${path}/main/main.jsp", //主标题超链接
+                        subtext: "用户信息" //副标题
                     },
                     tooltip: {},  //鼠标提示
                     legend: {
-                        data:['小男孩',"小女孩"]  //选项卡
+                        data: ['小男孩', "小女孩"]  //选项卡
                     },
                     xAxis: {  //横轴数据
                         data: data.month
@@ -42,7 +42,7 @@
                         name: '小男孩',
                         type: 'bar',  //图标的类型
                         data: data.boys  //数据
-                    },{
+                    }, {
                         name: '小女孩',
                         type: 'line',  //图标的类型
                         data: data.girls  //数据
@@ -51,7 +51,7 @@
 
                 // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
-            },"json");
+            }, "json");
 
 
         });
@@ -60,11 +60,11 @@
 
         /*初始化GoEasy对象*/
         var goEasy = new GoEasy({
-            host:'hangzhou.goeasy.io', //应用所在的区域地址: 【hangzhou.goeasy.io |singapore.goeasy.io】
+            host: 'hangzhou.goeasy.io', //应用所在的区域地址: 【hangzhou.goeasy.io |singapore.goeasy.io】
             appkey: "BC-df0a45499f274b2bae29ae50a6a12dc9", //替换为您的应用appkey
         });
 
-        $(function(){
+        $(function () {
             // 基于准备好的dom，初始化echarts实例
             var myChart = echarts.init(document.getElementById('main'));
 
@@ -75,7 +75,7 @@
                     //alert("Channel:" + message.channel + " content:" + message.content);
 
                     //将json字符串转化为javascript对象
-                    var data=JSON.parse(message.content);
+                    var data = JSON.parse(message.content);
 
                     console.log(data);
 
@@ -83,12 +83,12 @@
                     var option = {
                         title: {
                             text: '用户月注册统计',  //标题
-                            link:"${path}/main/main.jsp", //主标题超链接
-                            subtext:"用户信息" //副标题
+                            link: "${path}/main/main.jsp", //主标题超链接
+                            subtext: "用户信息" //副标题
                         },
                         tooltip: {},  //鼠标提示
                         legend: {
-                            data:['小男孩',"小女孩"]  //选项卡
+                            data: ['小男孩', "小女孩"]  //选项卡
                         },
                         xAxis: {  //横轴数据
                             data: data.month
@@ -98,7 +98,7 @@
                             name: '小男孩',
                             type: 'bar',  //图标的类型
                             data: data.boys  //数据
-                        },{
+                        }, {
                             name: '小女孩',
                             type: 'line',  //图标的类型
                             data: data.girls  //数据
@@ -114,11 +114,11 @@
 
     </script>
 </head>
-    <body>
-        <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-        <div align="center">
-            <div id="main" style="width: 600px;height:400px;" />
-        </div>
+<body>
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+<div align="center">
+    <div id="main" style="width: 600px;height:400px;"/>
+</div>
 
-    </body>
+</body>
 </html>

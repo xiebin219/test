@@ -8,7 +8,7 @@
 <script>
     /*初始化GoEasy对象*/
     var goEasy = new GoEasy({
-        host:'hangzhou.goeasy.io', //应用所在的区域地址: 【hangzhou.goeasy.io |singapore.goeasy.io】
+        host: 'hangzhou.goeasy.io', //应用所在的区域地址: 【hangzhou.goeasy.io |singapore.goeasy.io】
         appkey: "BC-df0a45499f274b2bae29ae50a6a12dc9", //替换为您的应用appkey
     });
 

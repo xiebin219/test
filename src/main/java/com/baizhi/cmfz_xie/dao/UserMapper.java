@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface UserMapper extends Mapper<User> {
     void update(User user);
+
     List<User> queryAll(@Param("page") Integer page, @Param("rows") Integer rows);
+
     Integer totalcount();
 }

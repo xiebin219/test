@@ -7,11 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+
 @Service
 @Transactional
 public class AlbumServiceImpl implements AlbumService {
     @Resource
     AlbuMapper albuMapper;
+
     @Override
     public List<Albu> queryAll(Integer page, Integer rows) {
         List<Albu> albus = albuMapper.queryAll(page, rows);

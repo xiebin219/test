@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public interface ArticleService {
 
-    HashMap<String,Object> queryByPage(Integer page, Integer rows);
+    HashMap<String, Object> queryByPage(Integer page, Integer rows);
 
     void delete(Article article);
 
@@ -15,5 +15,5 @@ public interface ArticleService {
 
     void update(Article article);
 
-     void del(Article article);
+    void del(Article article);
 }

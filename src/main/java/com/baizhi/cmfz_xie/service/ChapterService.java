@@ -8,9 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface ChapterService {
-    List<Chapter> queryAll(Integer page, Integer rows,String albumId);
+    List<Chapter> queryAll(Integer page, Integer rows, String albumId);
+
     Integer queryOne();
+
     String add(Chapter chapter);
+
     void uploadChapter(MultipartFile src, String id, HttpServletRequest request);
+
     void audioDownload(String audioName, HttpServletRequest request, HttpServletResponse response);
 }

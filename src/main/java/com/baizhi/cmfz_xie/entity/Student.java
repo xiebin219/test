@@ -13,10 +13,10 @@ import java.util.Date;
 public class Student {
     @Excel(name = "ID")
     private String id;
-    @Excel(name="名字")
+    @Excel(name = "名字")
     private String name;
-    @Excel(name="年龄")
+    @Excel(name = "年龄")
     private Integer age;
-    @Excel(name="生日",format = "yyyy年MM月dd日")
+    @Excel(name = "生日", format = "yyyy年MM月dd日")
     private Date bir;
 }

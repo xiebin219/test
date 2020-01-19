@@ -22,10 +22,10 @@ public class ChapterController {
 
     @RequestMapping("selectAll")
     @ResponseBody
-    public Map<String, Object> selectAll(Integer page, Integer rows,String albumId) throws Exception {
+    public Map<String, Object> selectAll(Integer page, Integer rows, String albumId) throws Exception {
         Map<String, Object> maps = new HashMap<String, Object>();
         //获取当前页的数据
-        List<Chapter> employees = chapterService.queryAll(page,rows,albumId);
+        List<Chapter> employees = chapterService.queryAll(page, rows, albumId);
         //设置当前页的数据
         maps.put("rows", employees);
         //设置当前页号
@@ -48,19 +48,19 @@ public class ChapterController {
     @RequestMapping("edit")
     public String edit(Chapter chapter, String oper, String albumId) {
 
-        String id=null;
-        if(oper.equals("add")){
-            System.out.println(albumId+"wwwww");
+        String id = null;
+        if (oper.equals("add")) {
+            System.out.println(albumId + "wwwww");
 
             chapter.setAlbum_id(albumId);
             id = chapterService.add(chapter);
         }
 
-        if(oper.equals("edit")){
+        if (oper.equals("edit")) {
 
         }
 
-        if(oper.equals("del")){
+        if (oper.equals("del")) {
 
         }
 
@@ -68,15 +68,15 @@ public class ChapterController {
     }
 
     @RequestMapping("uploadChapter")
-    public void uploadChapter(MultipartFile src, String id, HttpServletRequest request){
+    public void uploadChapter(MultipartFile src, String id, HttpServletRequest request) {
 
-        chapterService.uploadChapter(src,id,request);
+        chapterService.uploadChapter(src, id, request);
 
     }
 
     @RequestMapping("audioDownload")
-    public void audioDownload(String audioName, HttpServletRequest request, HttpServletResponse response){
-        chapterService.audioDownload(audioName,request,response);
+    public void audioDownload(String audioName, HttpServletRequest request, HttpServletResponse response) {
+        chapterService.audioDownload(audioName, request, response);
     }
 
 }

@@ -5,16 +5,16 @@
 <script charset="utf-8" src="${path}/kindeditor/kindeditor-all.js"></script>
 <script charset="utf-8" src="${path}/kindeditor/lang/zh-CN.js"></script>
 <script>
-    KindEditor.ready(function(K) {
-        window.editor = K.create('#editor_id',{
+    KindEditor.ready(function (K) {
+        window.editor = K.create('#editor_id', {
             //width:"1000px",
             //height:"100px",
             //minWidth:10,
             //minheight:20,
-            uploadJson:"${path}/upload/photo",  //指定文件上传的路径
-            filePostName:"img",  //指定上传文件的名  默认是imgFile
-            allowFileManager:true,//显示浏览远程图片的按钮
-            fileManagerJson:"${path}/upload/photo"  //指定浏览远程图片的路径
+            uploadJson: "${path}/upload/photo",  //指定文件上传的路径
+            filePostName: "img",  //指定上传文件的名  默认是imgFile
+            allowFileManager: true,//显示浏览远程图片的按钮
+            fileManagerJson: "${path}/upload/photo"  //指定浏览远程图片的路径
         });
     });
 </script>

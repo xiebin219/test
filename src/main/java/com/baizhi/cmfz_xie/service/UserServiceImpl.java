@@ -15,6 +15,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Resource
     UserMapper userMapper;
+
     @Override
     public List<User> queryAll(Integer page, Integer rows) {
         List<User> users = userMapper.queryAll(page, rows);
@@ -26,15 +27,16 @@ public class UserServiceImpl implements UserService {
 
         UserExample example = new UserExample();
         example.createCriteria().andIdEqualTo(user.getId());//获取id
-        userMapper.updateByExampleSelective(user,example);
+        userMapper.updateByExampleSelective(user, example);
     }
 
     @Override
     public Integer queryOne() {
-        Integer totalcount =userMapper.totalcount();
+        Integer totalcount = userMapper.totalcount();
         return totalcount;
     }
-    public List<User> select(){
+
+    public List<User> select() {
         List<User> select = userMapper.selectAll();
         return select;
     }

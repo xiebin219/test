@@ -4,7 +4,7 @@
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <!--定义项目的日志输出格式-->
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern> [%p] %d{yyyy-MM-dd HH:mm:ss} %m %n</pattern>
+            <pattern>[%p] %d{yyyy-MM-dd HH:mm:ss} %m %n</pattern>
             <!--       级别  日期格式        输出日志信息  换行符-->
         </layout>
     </appender>

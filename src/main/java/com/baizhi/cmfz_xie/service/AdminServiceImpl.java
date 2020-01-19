@@ -29,9 +29,9 @@ public class AdminServiceImpl implements AdminService {
         String imageCode = (String) session.getAttribute("ImageCode");
 
         //判断验证码是否一致
-        if(imageCode.equals(enCode)){
+        if (imageCode.equals(enCode)) {
 
-            System.out.println("username="+username);
+            System.out.println("username=" + username);
             //设置查询条件
             adminExample.createCriteria().andUsernameEqualTo(username);
 
@@ -39,24 +39,24 @@ public class AdminServiceImpl implements AdminService {
             Admin admin = adminDao.selectOneByExample(adminExample);
             System.out.println(admin);
             //判断用户
-            if(admin!=null){
+            if (admin != null) {
                 //判断密码
-                if(admin.getPassword().equals(password)){
+                if (admin.getPassword().equals(password)) {
                     //存储用户标记
-                    session.setAttribute("admin",admin);
-                    map.put("success","200");
-                    map.put("message","登录成功");
-                }else{
-                    map.put("success","400");
-                    map.put("message","密码错误");
+                    session.setAttribute("admin", admin);
+                    map.put("success", "200");
+                    map.put("message", "登录成功");
+                } else {
+                    map.put("success", "400");
+                    map.put("message", "密码错误");
                 }
-            }else{
-                map.put("success","400");
-                map.put("message","该用户不存在");
+            } else {
+                map.put("success", "400");
+                map.put("message", "该用户不存在");
             }
-        }else{
-            map.put("success","400");
-            map.put("message","验证码不正确");
+        } else {
+            map.put("success", "400");
+            map.put("message", "验证码不正确");
         }
         return map;
     }

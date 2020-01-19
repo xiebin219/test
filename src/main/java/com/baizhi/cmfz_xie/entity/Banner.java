@@ -21,7 +21,7 @@ public class Banner {
     private String status;
 
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date upload_time;
 
 }

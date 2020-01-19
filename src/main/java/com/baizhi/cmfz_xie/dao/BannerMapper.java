@@ -9,6 +9,8 @@ import java.util.List;
 public interface BannerMapper extends Mapper<Banner> {
 
     void update(Banner banner);
+
     List<Banner> queryAll(@Param("page") Integer page, @Param("rows") Integer rows);
+
     Integer totalcount();
 }

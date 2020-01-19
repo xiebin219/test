@@ -34,7 +34,7 @@ public class EditorController {
     * */
 
     @RequestMapping("uploadPhoto")
-    public HashMap<String, Object> uploadPhoto(MultipartFile img, HttpServletRequest request){
+    public HashMap<String, Object> uploadPhoto(MultipartFile img, HttpServletRequest request) {
 
         System.out.println("==文件上传==");
 
@@ -43,17 +43,17 @@ public class EditorController {
 
         File file = new File(realPath);
 
-        if(!file.exists()){
+        if (!file.exists()) {
             file.mkdirs();
         }
 
 
         String filename = img.getOriginalFilename();
 
-        String newName=new Date().getTime()+"-"+filename;
+        String newName = new Date().getTime() + "-" + filename;
 
         try {
-            img.transferTo(new File(realPath,newName));
+            img.transferTo(new File(realPath, newName));
 
 
             //获取http
@@ -69,15 +69,15 @@ public class EditorController {
             String contextPath = request.getContextPath();
 
             //"http://localhost:8989/cmfz/upload/editor/"+newName
-            String url=scheme+"://"+serverName+":"+serverPort+"/"+contextPath+"/upload/photo/"+newName;
+            String url = scheme + "://" + serverName + ":" + serverPort + "/" + contextPath + "/upload/photo/" + newName;
 
-            map.put("error",0);
-            map.put("url",url);
+            map.put("error", 0);
+            map.put("url", url);
 
         } catch (IOException e) {
             e.printStackTrace();
-            map.put("error",1);
-            map.put("message","上传失败");
+            map.put("error", 1);
+            map.put("message", "上传失败");
         }
 
         return map;
@@ -109,7 +109,7 @@ public class EditorController {
     * */
 
     @RequestMapping("photos")
-    public HashMap<String, Object> photos(HttpServletRequest request){
+    public HashMap<String, Object> photos(HttpServletRequest request) {
 
         HashMap<String, Object> maps = new HashMap<>();
 
@@ -142,26 +142,26 @@ public class EditorController {
             * */
 
             HashMap<String, Object> map = new HashMap<>();
-            map.put("is_dir",false); //是否是文件夹
-            map.put("has_file",false); //是否有文件
+            map.put("is_dir", false); //是否是文件夹
+            map.put("has_file", false); //是否有文件
             File file1 = new File(realPath, name);
-            map.put("filesize",file1.length()); //文件大小
-            map.put("is_photo",true); //是否是图片
+            map.put("filesize", file1.length()); //文件大小
+            map.put("is_photo", true); //是否是图片
             //获取扩展名
             String extension = FilenameUtils.getExtension(name);
-            map.put("filetype",extension); //图片类型
-            map.put("filename",name); //图片名
+            map.put("filetype", extension); //图片类型
+            map.put("filename", name); //图片名
 
             // 1575512825242-4.jpg
 
             String[] strs = name.split("-");
 
-            String time=strs[0];
+            String time = strs[0];
             long times = Long.parseLong(time);
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             String timess = dateFormat.format(times);
 
-            map.put("datetime",timess); //时间
+            map.put("datetime", timess); //时间
 
             //将封装好的图片信息数据放入集合中
             lists.add(map);
@@ -175,9 +175,9 @@ public class EditorController {
           "total_count": 5,
           "file_list": [
         * */
-        maps.put("current_url","http://localhost:8989/cmfz/upload/photo/");
-        maps.put("total_count",lists.size());
-        maps.put("file_list",lists);
+        maps.put("current_url", "http://localhost:8989/cmfz/upload/photo/");
+        maps.put("total_count", lists.size());
+        maps.put("file_list", lists);
 
         return maps;
     }

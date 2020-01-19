@@ -20,14 +20,14 @@ function codeTabs(tabData) {
         } else {
             div = $("<div style='height:350px; width:735px; overflow-y:scroll; font-size: 135%;'>")
         }
-        
+
         div.attr("id", "codetabs-" + i);
-                    
+
         divs.push(div);
     }
 
     var anchor = $("<a>").attr("href", "#codetabs-" + tabData.length)
-                         .html("Theme");
+        .html("Theme");
     var li = $("<li>").append(anchor);
 
     ul.append(li);
@@ -69,12 +69,12 @@ function getFileText(url, divID, /*lang*/ tabName) {
                 preTag = $("<pre>").addClass("prettyprint");
             } else {
                 preTag = $("<span>");
-            }           
+            }
 
             var strippedData = removeCodeTabsCode(data);
-            tabName === "Description" ? preTag.html(strippedData) : preTag.text(strippedData);            
+            tabName === "Description" ? preTag.html(strippedData) : preTag.text(strippedData);
             $("#" + divID).append(preTag);
-           
+
             if (tabName !== "Description") {
                 prettyPrint();
             }
@@ -91,7 +91,7 @@ function removeCodeTabsCode(html) {
     if (beginIndex > -1) {
         var blockToRemove = html.substr(beginIndex, endIndex - beginIndex + endBlock.length);
         var result = html.replace(blockToRemove, "");
-        
+
         return result;
     }
 

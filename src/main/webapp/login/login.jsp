@@ -14,9 +14,12 @@
     <link rel="stylesheet" href="assets/css/form-elements.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/ico/favicon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${path}/login/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${path}/login/assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${path}/login/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="${path}/login/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="${path}/login/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="${path}/login/assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="${path}/login/assets/ico/apple-touch-icon-57-precomposed.png">
     <script src="${path}/bootstrap/js/jquery.min.js"></script>
     <script src="${path}/login/assets/bootstrap/js/bootstrap.min.js"></script>
@@ -24,11 +27,11 @@
     <script src="${path}/login/assets/js/scripts.js"></script>
     <script src="${path}/login/assets/js/jquery.validate.min.js"></script>
     <script>
-        $(function(){
+        $(function () {
 
             //点击切换验证码
-            $("#captchaImage").click(function(){
-                $("#captchaImage").prop("src","${path}/admin/getImageCode?"+new Date().getTime());
+            $("#captchaImage").click(function () {
+                $("#captchaImage").prop("src", "${path}/admin/getImageCode?" + new Date().getTime());
             });
 
             //表单验证
@@ -39,26 +42,26 @@
 
             //管理员登录
             //异步登录
-            $("#loginButtonId").click(function(){
+            $("#loginButtonId").click(function () {
 
                 //表单验证
-                var isOk =$("#loginForm").valid();
+                var isOk = $("#loginForm").valid();
 
                 //判断表单是否验证通过
-                if(isOk){
+                if (isOk) {
                     //提交表单数据
                     $.ajax({
-                        url:"${path}/admin/login",
-                        type:"post",
-                        dataType:"json",
-                        data:$("#loginForm").serialize(), //表单序列化
-                        success:function(data){
-                            if(data.success=="200"){
+                        url: "${path}/admin/login",
+                        type: "post",
+                        dataType: "json",
+                        data: $("#loginForm").serialize(), //表单序列化
+                        success: function (data) {
+                            if (data.success == "200") {
                                 //登录成功  页面跳转
-                                location.href="${path}/main/main.jsp"
-                            }else{
+                                location.href = "${path}/main/main.jsp"
+                            } else {
                                 //登录失败  展示错误信息
-                                $("#msgDiv").html("<span style='color:red' >"+data.message+"</span>");
+                                $("#msgDiv").html("<span style='color:red' >" + data.message + "</span>");
                             }
                         }
                     });
@@ -101,18 +104,23 @@
                             <span id="msgDiv"></span>
                             <div class="form-group">
                                 <label class="sr-only" for="form-username">Username</label>
-                                <input type="text" minlength="4" name="username" placeholder="请输入用户名..." class="form-username form-control" required id="form-username">
+                                <input type="text" minlength="4" name="username" placeholder="请输入用户名..."
+                                       class="form-username form-control" required id="form-username">
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="form-password">Password</label>
-                                <input type="password"  minlength="4" name="password" placeholder="请输入密码..." class="form-password form-control" required id="form-password">
+                                <input type="password" minlength="4" name="password" placeholder="请输入密码..."
+                                       class="form-password form-control" required id="form-password">
                             </div>
                             <div class="form-group">
                                 <%--<label class="sr-only" for="form-code">Code</label>--%>
-                                <img id="captchaImage" style="height: 48px" class="captchaImage" src="${path}/admin/getImageCode">
-                                <input style="width: 289px;height: 50px;border:3px solid #ddd;border-radius: 4px;" minlength="4" required type="test" name="enCode" id="form-code">
+                                <img id="captchaImage" style="height: 48px" class="captchaImage"
+                                     src="${path}/admin/getImageCode">
+                                <input style="width: 289px;height: 50px;border:3px solid #ddd;border-radius: 4px;"
+                                       minlength="4" required type="test" name="enCode" id="form-code">
                             </div>
-                            <input type="button" style="width: 400px;border:1px solid #9d9d9d;border-radius: 4px;" id="loginButtonId" value="登录">
+                            <input type="button" style="width: 400px;border:1px solid #9d9d9d;border-radius: 4px;"
+                                   id="loginButtonId" value="登录">
                         </form>
                     </div>
                 </div>
